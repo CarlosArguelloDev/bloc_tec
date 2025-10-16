@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16.8
+    environment:
+      POSTGRES_DB: crud
+      POSTGRES_USER: charli
+      POSTGRES_PASSWORD: Mascador24
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+
+
+  app_v1.1:
+    image: blogtec:latest
+    environment:
+      DATABASE_URL: postgresql://charli:Mascador24@db/crud
+    depends_on:
+      - db
+    ports:
+      - "5001:5000"
+
+volumes:
+  pg_data:
