@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - dev
+      - Dev
 
 permissions:
   contents: write
